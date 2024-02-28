@@ -52,7 +52,7 @@ def thing():
 
     ##Lag Calculation with ramp sse
 
-    lagRatio = (5*numpy.square(pLead))/(2*KC*1*5*0.01984)
+    lagRatio = (5*numpy.square(pLead))/(2*KC*1*5*0.01984) ## Less than 0.02 to make the gain found in the compensator approx 126 so sse < 0.02
     print(lagRatio)
     zLag = 0.05
 
