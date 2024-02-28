@@ -2,8 +2,7 @@ import numpy
 import math
 # This is a sample Python script.
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# By D. Whyman Last Update 28/02/2024
 
 
 def angleCritCalc(poles, zeros):
@@ -26,9 +25,8 @@ def thing():
     print(zeta,", ",omegaN)
 
     zetaTarget = 0.75
-    omegaNTarget = 6
-
-    clPole = [-zetaTarget*omegaNTarget, omegaNTarget*numpy.sqrt(1-numpy.square(zetaTarget))]
+    omegaNTarget = 4.4
+    clPole = [-zetaTarget*omegaNTarget-0.0, omegaNTarget*numpy.sqrt(1-numpy.square(zetaTarget))]
     print(clPole)
 
     plantPoles = [0, -1, -5]
@@ -38,7 +36,7 @@ def thing():
     theta1 = numpy.arctan(clPole[1]/clPole[0]) + numpy.pi
     thetaleft = numpy.pi - theta1
     thetaLead = thetaleft/2
-    print(theta1, thetaleft, thetaLead)
+    ##print(theta1, thetaleft, thetaLead)
 
     pLead = clPole[0] - clPole[1]/numpy.tan(thetaLead)
     print(pLead)
@@ -54,8 +52,15 @@ def thing():
 
     ##Lag Calculation with ramp sse
 
-    lagRatio = (5*numpy.square(pLead))/(2*KC*1*5*0.02)
+    lagRatio = (5*numpy.square(pLead))/(2*KC*1*5*0.01984)
     print(lagRatio)
+    zLag = 0.05
+
+    pLag = zLag/lagRatio
+    print(pLag)
+
+    C = KC*(zLag*1*5)/(pLag*pLead**2)
+    print(C)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
